@@ -1,0 +1,20 @@
+{
+  "request": {
+    "urlPathPattern": "/1.1/statuses/filter.json",
+
+    "queryParameters": {
+      "track": {
+        "matches": ".*"
+      }
+    },
+    "method": "GET"
+  },
+  "response": {
+    "headers": {
+      "content-type": "application/json"
+    },
+    "status": 200,
+    "bodyFileName": "filter_realtime_tweets_response.json",
+    "fixedDelayMilliseconds": 0
+  }
+}
