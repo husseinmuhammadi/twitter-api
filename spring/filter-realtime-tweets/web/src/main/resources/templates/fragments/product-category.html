@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="categories">
+    <ul>
+        <li th:each="productCategory:${productCategories}">
+            <a href="#" th:onclick="'javascript:select(' + ${productCategory.id} + ')'"
+               th:text="${productCategory.name}"></a>
+            <!--<a th:href="@{/productCategory/profile(productCategoryId=${productCategory.id})}"
+               th:text="${productCategory.name}"></a>-->
+            <th:block th:include="fragments/product-category::categories" th:with="productCategories=${productCategory.subCategories}"></th:block>
+        </li>
+    </ul>
+</th:block>
+</html>

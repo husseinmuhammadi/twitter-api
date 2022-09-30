@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+    <th:block th:replace="fragments/header::head"/>
+</head>
+<body>
+<div th:replace="fragments/header::header"></div>
+<div class="container">
+    <h1 th:text="#{label.form.title.registration}">form</h1>
+    <form th:action="@{/registration}" th:object="${user}" method="POST" enctype="utf8">    
+        <div class="form-group">
+            <label for="username" th:text="#{label.user.username}">Username</label>
+            <input type="text" class="form-control" id="username" aria-describedby="username-description" placeholder="Username" th:field="*{username}">
+            <small class="form-text text-muted">
+                Enter username
+            </small>
+            <div class="alert alert-warning alert-dismissible fade show" role="alert" th:if="${#fields.hasErrors('username')}">
+                <span th:each="error: ${#fields.errors('username')}" th:text="${error}">Validation error</span>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!--<p th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Name Error</p>-->
+        </div>
+        <div class="form-group">
+            <label for="email" th:text="#{label.user.email}">Email</label>
+            <input type="email" class="form-control" id="email" aria-describedby="email-description" placeholder="Email" th:field="*{email}"/>
+            <small class="form-text text-muted">
+                Enter email
+            </small>
+            <div class="alert alert-warning alert-dismissible fade show" role="alert" th:if="${#fields.hasErrors('email')}">
+                <span th:each="error : ${#fields.errors('email')}" th:text="${error}">Validation error</span>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="password" th:text="#{label.user.password}">Password</label>
+            <input type="password" class="form-control" id="password" aria-describedby="password-description" th:field="*{password}"/>
+            <small class="form-text text-muted">
+                Enter password
+            </small>
+            <div class="alert alert-warning alert-dismissible fade show" role="alert" th:if="${#fields.hasErrors('password')}">
+                <span th:each="error : ${#fields.errors('password')}" th:text="${error}">Validation error</span>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="confirm-password" th:text="#{label.user.confirmPassword}">Confirm Password</label>
+            <input type="password" class="form-control" id="confirm-password" aria-describedby="confirm-password-description" th:field="*{passwordConfirm}"/>
+            <small class="form-text text-muted">
+                Enter confirm password
+            </small>
+            <div class="alert alert-warning alert-dismissible fade show" role="alert" th:if="${#fields.hasErrors('passwordConfirm')}">
+                <span th:each="error : ${#fields.errors('passwordConfirm')}" th:text="${error}">Validation error</span>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+        <div class="form-group" role="group">
+            <button type="submit" class="btn btn-primary" th:text="#{label.form.submit}">submit</button>
+        </div>
+    </form>
+</div>
+<div th:replace="fragments/footer::footer"></div>
+</body>
+</html>

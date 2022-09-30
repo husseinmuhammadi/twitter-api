@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cart Entry</title>
+    <th:block th:replace="fragments/header::head"/>
+</head>
+<body>
+<div th:replace="fragments/header::header"></div>
+<div class="container">
+    <h1>Cart Entry</h1>
+    <form th:action="@{/cart/save}" th:object="${model}" method="post">
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" aria-describedby="username-description" placeholder="Username" th:field="*{user.username}">
+            <small id="username-description" class="form-text text-muted">
+                Username is prepared from login user information
+            </small>
+        </div>
+        <div class="form-group">
+            <label for="product-id">Product</label>
+            <div class="input-group">
+                <input type="text" class="form-control" id="product-id" aria-describedby="product-description" placeholder="Product" th:field="*{product.id}">
+                <div class="input-group-append">
+                    <button type="button" class="btn btn-outline-secondary" onclick="openModal(this)" data-toggle="modal" data-target="#exampleModal">Select</button>
+                </div>
+            </div>
+            <small id="product-description" class="form-text text-muted">
+                Select a product
+            </small>
+        </div>
+        <div role="group">
+            <button type="submit" class="btn btn-primary" name="action" value="save">Save</button>
+        </div>
+    </form>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Modal body text goes here.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="fragments/footer::footer"></div>
+<script th:inline="javascript">
+    function openModal(btn) {
+        var contextPath = $('#contextPath').val();
+        console.log(contextPath);
+        var form = $(btn).parents('form:first');
+        var url1 = form.attr('action');
+        var url = contextPath + "/product/fragment/list";
+        console.log(url);
+        $(".modal-body").load(url);
+    }
+
+    function select(id) {
+        console.log(id);
+        var $selectedId = $('#product-id');
+        $selectedId.val(id);
+    }
+</script>
+</body>
+</html>

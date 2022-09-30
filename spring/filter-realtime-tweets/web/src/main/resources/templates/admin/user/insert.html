@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User Entry</title>
+    <th:block th:replace="fragments/header::head"/>
+</head>
+<body>
+<div th:replace="fragments/header::header"></div>
+<div class="container">
+    <h1>User Entry</h1>
+
+    <form action="#" th:action="@{/admin/user/save}" th:object="${user}" method="post">
+        <p>
+            Name: <input type="text" th:field="*{username}">
+        </p>
+        <p>
+            Email: <input type="email" th:field="*{email}">
+        </p>
+        <p>
+            Password: <input type="password" th:field="*{password}">
+        </p>
+        <p>
+            Confirm password: <input type="password" th:field="*{passwordConfirm}">
+        </p>
+        <p>
+            <input type="submit" value="Submit"/>
+            <a th:href="@{/admin/user/list}">Cancel</a>
+        </p>
+    </form>
+</div>
+<div th:replace="fragments/footer::footer"></div>
+</body>
+</html>

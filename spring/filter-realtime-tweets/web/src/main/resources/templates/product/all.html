@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Products</title>
+    <th:block th:replace="fragments/header::head"/>
+</head>
+<body>
+<th:block th:replace="fragments/header::header"/>
+<div class="container">
+    <h1>Products</h1>
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Code</th>
+                <th scope="col">Currency</th>
+                <th scope="col">Price</th>
+                <th scope="col">Options</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${#lists.isEmpty(list)}">
+                <td colspan="6">No product available</td>
+            </tr>
+            <tr th:each="product : ${list}">
+                <th scope="row">
+                    <a th:href="@{'/product/profile/'+${product.id}}">
+                        <span th:text="${product.id}"></span>
+                    </a>
+                </th>
+                <td>
+                    <span th:text="${product.productName}"></span>
+                </td>
+                <td>
+                    <span th:text="${product.productCode}"></span>
+                </td>
+                <td>
+                    <span th:text="${product.currency}"></span>
+                </td>
+                <td>
+                    <span th:text="${#numbers.formatDecimal(product.amount, 0, 'COMMA', 2, 'POINT')}"></span>
+                </td>
+                <td>
+                    <div th:with="deleteUrl='/product/remove/' + ${product.id}">
+                        <a class="btn btn-link" th:href="@{${deleteUrl}}">Remove</a>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div role="group">
+        <a th:href="@{/product/entry}" class="btn btn-outline-primary">Add</a>
+    </div>
+</div>
+<th:block th:replace="fragments/footer::footer"/>
+</body>
+</html>

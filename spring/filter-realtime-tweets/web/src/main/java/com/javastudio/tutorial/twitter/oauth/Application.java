@@ -1,9 +1,13 @@
 package com.javastudio.tutorial.twitter.oauth;
 
+import com.javastudio.tutorial.twitter.oauth.web.config.OAuthProperties;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import springfox.documentation.service.OAuth;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+@EnableConfigurationProperties({OAuthProperties.class})
 @EnableSwagger2
 @SpringBootApplication
 public class Application {

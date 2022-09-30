@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<th:block th:fragment="footer">
+    <script th:src="@{/webjars/jquery/3.0.0/jquery.js}"></script>
+    <script th:src="@{/webjars/popper.js/1.14.3/umd/popper.js}"></script>
+    <script th:src="@{/webjars/bootstrap/4.4.1/js/bootstrap.js}"></script>
+    <script>
+        function makeAjaxSubmit(formId) {
+            var $form = $('#' + formId);
+            $form.on('submit', function (e) {
+                e.preventDefault();
+                $("#ajaxLoadedContent").html('');
+                $.ajax({
+                    url: $form.attr('action'),
+                    type: 'post',
+                    data: $form.serialize(),
+                    success: function (response) {
+                        if ($(response).find('.has-error').length)
+                            $form.replaceWith(response);
+                        else
+                        // $("#ajaxLoadedContent").replaceWith(response);
+                            $("#ajaxLoadedContent").html(response);
+                    }
+                });
+            });
+        }
+    </script>
+</th:block>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Order Entry</title>
+    <th:block th:replace="fragments/header::head"/>
+</head>
+<body>
+<div th:replace="fragments/header::header"></div>
+<div class="container">
+    <h1>Order Entry</h1>
+
+    <form action="#" th:action="@{/order/save}" th:object="${model}" method="post">
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" aria-describedby="username-description" th:field="*{user.username}">
+            <small id="username-description" class="form-text text-muted">
+                Logged in user
+            </small>
+        </div>
+        <div class="form-group">
+            <label for="order-date">Order date</label>
+            <input type="date" class="form-control" id="order-date" aria-describedby="order-date-description" th:field="*{orderDate}">
+            <small id="order-date-description" class="form-text text-muted">
+                Order date
+            </small>
+        </div>
+        <div role="group">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <a class="btn btn-outline-secondary" th:href="@{/order/index}">Cancel</a>
+        </div>
+    </form>
+</div>
+<div th:replace="fragments/footer::footer"></div>
+</body>
+</html>

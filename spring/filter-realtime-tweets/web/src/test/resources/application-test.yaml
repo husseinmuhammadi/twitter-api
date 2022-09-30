@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: Filter Realtime Tweets
+
+#logging:
+#  level:
+#    com.google.api: TRACE
+
+twitter:
+  realtime-tweets:
+    timeout: 3
+  oauth:
+    consumer:
+      key: OAUTH-CONSUMER-KEY
+      secret: OAUTH-CONSUMER-SECRET
+  endpoint:
+    statuses:
+      filter: http://localhost:${wiremock.server.port}/1.1/statuses/filter.json
+    oauth:
+      authorize: http://localhost:${wiremock.server.port}/oauth/authorize
+      access-token: http://localhost:${wiremock.server.port}/oauth/access_token
+      request-token: http://localhost:${wiremock.server.port}/oauth/request_token

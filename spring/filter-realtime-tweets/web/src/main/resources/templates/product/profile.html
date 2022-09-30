@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Profile</title>
+    <th:block th:replace="fragments/header::head"/>
+</head>
+<body>
+<div th:replace="fragments/header::header"></div>
+<div class="container">
+    <h1>Product Profile</h1>
+    <form th:object="${product}" method="post">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="product-name-description">Product Name</span>
+            </div>
+            <input type="text" class="form-control" aria-label="Product Name" aria-describedby="product-name-description" th:field="*{productName}">
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="product-code-description">Product Code</span>
+            </div>
+            <input type="text" class="form-control" aria-label="Product Code" aria-describedby="product-code-description" th:field="*{productCode}">
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="currency-description">Currency</span>
+            </div>
+            <input type="text" class="form-control" aria-label="Currency" aria-describedby="currency-description" th:field="*{currency}">
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="amount-description">Price</span>
+            </div>
+            <span class="form-control" aria-label="Currency" aria-describedby="amount-description" th:text="${#numbers.formatDecimal(product.amount, 0, 'COMMA', 2, 'POINT')}"></span>
+        </div>
+        <div role="group">
+            <button type="button" class="btn btn-primary" th:onclick="'javascript:addToChart(' + ${product.id} + ')'">Add to chart</button>
+        </div>
+    </form>
+</div>
+<div th:replace="fragments/footer::footer"></div>
+<script>
+    function addToChart(productId) {
+        var contextPath = $('#contextPath').val();
+        console.log(contextPath);
+        console.log(productId);
+        var url = contextPath + '/cart/add?' + 'productId=' + productId;
+        $.post(url);
+    }
+</script>
+</body>
+</html>

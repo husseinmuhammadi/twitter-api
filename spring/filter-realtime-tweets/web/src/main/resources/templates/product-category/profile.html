@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Category Profile</title>
+    <th:block th:replace="fragments/header::head"/>
+</head>
+<body>
+<div th:replace="fragments/header::header"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-3">
+            <th:block th:include="fragments/category-tree :: categories"/>
+        </div>
+        <div class="col-9">
+            <th:block th:include="fragments/product-list :: products"/>
+        </div>
+    </div>
+</div>
+</body>
+</html>

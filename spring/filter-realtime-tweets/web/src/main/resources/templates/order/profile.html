@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Order Profile</title>
+    <th:block th:replace="fragments/header::head"/>
+</head>
+<body>
+<div th:replace="fragments/header::header"></div>
+<div class="container">
+    <h1>Order Profile</h1>
+    <form th:object="${order}" method="post">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="username-description">User</span>
+            </div>
+            <input type="text" class="form-control" aria-label="Username" aria-describedby="username-description" th:field="*{user.username}">
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="order-date-description">Order Date</span>
+            </div>
+            <input type="text" class="form-control" aria-label="Order Date" aria-describedby="order-date-description" th:field="*{orderDate}">
+        </div>
+    </form>
+</div>
+<div th:replace="fragments/footer::footer"></div>
+<script>
+</script>
+</body>
+</html>

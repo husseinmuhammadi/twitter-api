@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Access denied</title>
+    <th:block th:replace="fragments/header::head"/>
+</head>
+<body>
+<div th:replace="fragments/header::header"></div>
+<div class="container">
+
+    <div class="starter-template">
+        <h1>403 - Access is denied</h1>
+        <div th:inline="text">Hello '[[${#httpServletRequest.remoteUser}]]',
+            you do not have permission to access this page.</div>
+    </div>
+
+</div>
+<div th:replace="fragments/footer::footer"></div>
+</body>
+</html>

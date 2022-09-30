@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title>Home</title>
+    <th:block th:replace="fragments/header::head"/>
+</head>
+<body>
+<th:block th:replace="fragments/header::header"/>
+<div class="container">
+
+    <div>
+        <a th:href="@{/twitter/oauth}" class="badge badge-primary">Twitter OAuth</a>
+    </div>
+
+    <div>
+        <a th:href="@{/registration}" class="badge badge-primary">Registration</a>
+    </div>
+    <div>
+        <a th:href="@{/product/index}" class="badge badge-primary">Product List</a>
+        <a th:href="@{/product/all}" class="badge badge-primary">All Products</a>
+        <a th:href="@{/product/entry}" class="badge badge-secondary">Add New Product</a>
+    </div>
+    <a th:href="@{/productCategory/list}" class="badge badge-primary">Product Category List</a>
+    <a th:href="@{/productCategory/profile}" class="badge badge-secondary">Product Category Profile (HTML)</a>
+    <a th:href="@{/productCategory/profile1}" class="badge badge-primary">Product Category Profile (jQuery)</a>
+    <div role="group">
+        <a th:href="@{/cart/all}" class="badge badge-primary">Cart List (All)</a>
+        <a th:href="@{/cart/entry}" class="badge badge-primary">Cart Entry</a>
+    </div>
+    <div>
+        <a th:href="@{/order/index}" class="badge badge-primary">Order List</a>
+        <a th:href="@{/order/entry}" class="badge badge-primary">Order Entry</a>
+    </div>
+</div>
+<th:block th:replace="fragments/footer::footer"/>
+</body>
+</html>

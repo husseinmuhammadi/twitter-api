@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="ctx" th:content="${#httpServletRequest.getContextPath()}"/>
+    <title>Title</title>
+    <th:block th:replace="fragments/header::head"/>
+</head>
+<body>
+<div th:replace="fragments/header::header"></div>
+<div class="container">
+    <form>
+        <div id="productCategories">
+        </div>
+        <div id="products">
+        </div>
+    </form>
+</div>
+<div th:replace="fragments/footer::footer"></div>
+<script>
+    var ctx = $("meta[name='ctx']").attr("content");
+
+    // Prepend context path to all jQuery AJAX requests
+    $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
+        if (!options.crossDomain) {
+            options.url = ctx + options.url;
+        }
+    });
+
+    $(document).ready(function () {
+        var url = '/productCategory/fragment/list';
+        $("#productCategories").load(url);
+    });
+
+    function select(productCategoryId) {
+        var url = '/product/fragment/list/category';
+        url = url + '?productCategoryId=' + productCategoryId;
+        $('#products').load(url);
+    }
+</script>
+</body>
+</html>

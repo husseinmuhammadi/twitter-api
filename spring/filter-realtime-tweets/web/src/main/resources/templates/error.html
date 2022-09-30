@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>error</title>
+</head>
+<body>
+general error page
+<p>timestamp: <span th:text="*{timestamp}"></span></p>
+<p>status: <span th:text="*{status}"></span></p>
+<p>error: <span th:text="*{error}"></span></p>
+<p>message: <span th:text="*{message}"></span></p>
+<!--<p>trace: <span th:text="*{trace}"></span></p>-->
+<p>path: <span th:text="*{path}"></span></p>
+<a th:href="${path}">Try again</a>
+<p>url: <span th:text="*{url}"></span></p>
+</body>
+</html>

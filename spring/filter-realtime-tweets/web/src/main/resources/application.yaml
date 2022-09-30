@@ -1,0 +1,42 @@
+spring:
+  application:
+    name: Filter Realtime Tweets
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/twitter
+    username: twitter
+    password: 123456
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        default_schema: main
+        jdbc:
+          lob:
+            non_contextual_creation: true
+
+#logging:
+#  level:
+#    com.google.api: TRACE
+#    org.hibernate.SQL: DEBUG
+#    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+
+twitter:
+  realtime-tweets:
+    timeout: 30
+  oauth:
+    consumer:
+      key: RLSrphihyR4G2UxvA0XBkLAdl
+      secret: FTz2KcP1y3pcLw0XXMX5Jy3GTobqUweITIFy4QefullmpPnKm4
+  endpoint:
+    statuses:
+      filter: https://stream.twitter.com/1.1/statuses/filter.json
+    oauth:
+      authorize: https://api.twitter.com/oauth/authorize
+      access-token: https://api.twitter.com/oauth/access_token
+      request-token: https://api.twitter.com/oauth/request_token
+

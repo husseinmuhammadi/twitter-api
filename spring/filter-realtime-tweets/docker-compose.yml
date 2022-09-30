@@ -1,0 +1,16 @@
+version: "3.8"
+services:
+  oauth-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: sytac/oauth/twitter
+    container_name: oauth-twitter
+    ports:
+      - 8080:8080
+    networks:
+      - sytac-network
+networks:
+  sytac-network:
+    name: sytac
+    external: false

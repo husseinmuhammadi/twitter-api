@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Category Entry</title>
+    <th:block th:replace="fragments/header::head"/>
+</head>
+<body>
+<div th:replace="fragments/header::header"></div>
+<div class="container">
+    <h1>Product Category Entry</h1>
+
+    <form action="#" th:action="@{/productCategory/save}" th:object="${productCategory}" method="post">
+        <p>
+            Name: <input type="text" th:field="*{name}">
+        </p>
+        <p>
+            Parent: <span type="text" th:text="*{masterCategory?.id}"></span>
+        </p>
+        <p th:if="${productCategory.masterCategory != null}">
+            <input type="hidden" th:field="*{masterCategory.id}">
+        </p>
+        <p>
+            <input type="submit" value="Submit"/>
+            <a th:href="@{/productCategory/list}">Cancel</a>
+        </p>
+    </form>
+</div>
+<div th:replace="fragments/footer::footer"></div>
+</body>
+</html>
