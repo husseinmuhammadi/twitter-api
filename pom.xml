@@ -11,6 +11,7 @@
 
     <modules>
         <module>twitter-oauth</module>
+        <module>oauth-google</module>
     </modules>
 
     <properties>
